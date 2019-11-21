@@ -22,8 +22,10 @@ namespace ClientChat
         static Socket client;
         static string account;
         //Thông số gói tin
-        byte[] data = new byte[1024];
-        int size = 1024;
+        byte[] data = new byte[1024*5000];
+        int size = 1024*5000;
+        private string path= Directory.GetCurrentDirectory();
+
         //Cấu hình cho phép di chuyển khi nhấn panel
         public const int WM_NCLBUTTONDOWN = 0xA1;
         public const int HT_CAPTION = 0x2;
@@ -93,9 +95,44 @@ namespace ClientChat
             else
             {
                 //Xữ lý nếu gói nhận được là file
-                if (messagerstring[0].Equals("f"))
+                if (messagerstring[0].Trim().Equals("f"))
                 {
-
+                    string packetsend = Encoding.UTF8.GetString(data, 0, 200);
+                    messagerstring = packetsend.Split(':');
+                    //Kiểm tra UI Messenger của người nhận tồn lại chưa
+                    int i = 0;
+                    for (i = 0; i < MessengerContainer.Controls.Count; i++)
+                        if (MessengerContainer.Controls[i].ToString().Equals(messagerstring[1]))
+                            break;
+                    //Nếu chưa tồn tại tạo UI
+                    Messenger messenger = new Messenger();
+                    messenger.AddMessenger(messagerstring[1]);
+                    if (i == MessengerContainer.Controls.Count)
+                    {
+                        messenger.Dock = DockStyle.Fill;
+                        MessengerContainer.Invoke(new Action(() => MessengerContainer.Controls.Add(messenger)));
+                    }
+                    int fNameLen = BitConverter.ToInt32(data, 200);
+                    string fName = Encoding.UTF8.GetString(data, 204, fNameLen);
+                    BinaryWriter write = new BinaryWriter(File.Open(path + "/" + fName, FileMode.Append));
+                    write.Write(data, 204 + fNameLen, recv - 204 - fNameLen);
+                    write.Close();
+                    //Tạo Recivied UI để hiển thị tin nhắn được nhận
+                    foreach (Messenger c in MessengerContainer.Controls)
+                    {
+                        if (messenger.Equals(c))
+                        {
+                            //Tùy chỉnh hiển thị file
+                            string type = fName.Substring(fName.LastIndexOf(".") + 1);
+                            type = type.ToLower();
+                            //Nếu là hình
+                            if (type.Equals("png") || type.Equals("jpeg") || type.Equals("jpg") || type.Equals("gif"))
+                                c.SetRecividePic(path, fName);
+                            else
+                                c.SetRecivideFile(messagerstring[1], fName, path);
+                            break;
+                        }
+                    }
                 }
                 else
                 {

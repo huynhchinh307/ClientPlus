@@ -72,6 +72,12 @@
     <Compile Include="Recivied.Designer.cs">
       <DependentUpon>Recivied.cs</DependentUpon>
     </Compile>
+    <Compile Include="ReciviedFile.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ReciviedFile.Designer.cs">
+      <DependentUpon>ReciviedFile.cs</DependentUpon>
+    </Compile>
     <Compile Include="RePic.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -83,6 +89,12 @@
     </Compile>
     <Compile Include="Sent.Designer.cs">
       <DependentUpon>Sent.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SentFile.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="SentFile.Designer.cs">
+      <DependentUpon>SentFile.cs</DependentUpon>
     </Compile>
     <Compile Include="SentPic.cs">
       <SubType>UserControl</SubType>
@@ -112,11 +124,17 @@
     <EmbeddedResource Include="Recivied.resx">
       <DependentUpon>Recivied.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ReciviedFile.resx">
+      <DependentUpon>ReciviedFile.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="RePic.resx">
       <DependentUpon>RePic.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Sent.resx">
       <DependentUpon>Sent.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SentFile.resx">
+      <DependentUpon>SentFile.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SentPic.resx">
       <DependentUpon>SentPic.cs</DependentUpon>

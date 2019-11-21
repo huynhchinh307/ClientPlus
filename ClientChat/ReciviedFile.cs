@@ -11,19 +11,18 @@ using System.Diagnostics;
 
 namespace ClientChat
 {
-    public partial class RePic : UserControl
+    public partial class ReciviedFile : UserControl
     {
         string fpath;
-        public RePic(string fpath, string fname)
+        public ReciviedFile(string nguoigui, string fname, string fpath)
         {
             InitializeComponent();
-            lbl_date.Text = DateTime.Now.ToString();
-            pic.ImageLocation = fpath+"/"+fname;
+            lbl_name.Text = nguoigui;
+            lbl_filename.Text = fname;
             this.fpath = fpath;
-            lblImgName.Text = fname;
         }
 
-        private void lblImgName_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void lbl_filename_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             Process.Start(fpath);
         }

@@ -30,7 +30,6 @@
         {
             this.lbl_Name = new System.Windows.Forms.Label();
             this.panel12 = new System.Windows.Forms.Panel();
-            this.openFile = new System.Windows.Forms.OpenFileDialog();
             this.panel_log = new System.Windows.Forms.FlowLayoutPanel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.btn_Attach = new System.Windows.Forms.Button();
@@ -57,10 +56,6 @@
             this.panel12.Name = "panel12";
             this.panel12.Size = new System.Drawing.Size(333, 7);
             this.panel12.TabIndex = 7;
-            // 
-            // openFile
-            // 
-            this.openFile.FileName = "openFileDialog1";
             // 
             // panel_log
             // 
@@ -139,7 +134,6 @@
 
         private System.Windows.Forms.Label lbl_Name;
         private System.Windows.Forms.Panel panel12;
-        private System.Windows.Forms.OpenFileDialog openFile;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Button btn_Attach;
         private System.Windows.Forms.TextBox txt_Text;
