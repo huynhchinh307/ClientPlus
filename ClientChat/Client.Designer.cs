@@ -129,6 +129,7 @@
             // 
             this.Data_listOnline.FormattingEnabled = true;
             this.Data_listOnline.Location = new System.Drawing.Point(354, 160);
+            this.Data_listOnline.MultiColumn = true;
             this.Data_listOnline.Name = "Data_listOnline";
             this.Data_listOnline.Size = new System.Drawing.Size(120, 264);
             this.Data_listOnline.TabIndex = 0;

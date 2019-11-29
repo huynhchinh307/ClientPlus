@@ -84,16 +84,20 @@ namespace ClientChat
             string stringData = Encoding.UTF8.GetString(data, 0, recv);
             string[] messagerstring = stringData.Split(':');
             //Xữ lý khi nhận packet online
-            if (messagerstring[0].Equals("OnlinePacket"))
+            if (messagerstring[0].Equals("Connect"))
             {
-                //xữ lý online client offline
-                if (Data_listOnline.Items.Contains(messagerstring[1]))
-                    Data_listOnline.Invoke(new Action(() => Data_listOnline.Items.Remove(messagerstring[1])));
-                else
+                if (!Data_listOnline.Items.Contains(messagerstring[1]))
                     Data_listOnline.Invoke(new Action(() => Data_listOnline.Items.Add(messagerstring[1])));
             }
             else
             {
+                //xữ lý online client offline
+                if (messagerstring[0].Equals("Disconnect"))
+                {
+                    if (Data_listOnline.Items.Contains(messagerstring[1]))
+                        Data_listOnline.Invoke(new Action(() => Data_listOnline.Items.Remove(messagerstring[1])));
+                }
+                else
                 //Xữ lý nếu gói nhận được là file
                 if (messagerstring[0].Trim().Equals("f"))
                 {
